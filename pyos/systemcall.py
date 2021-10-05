@@ -1,4 +1,4 @@
-"""This module includes kinds of system all."""
+"""This module includes kinds of system call."""
 
 class SystemCall:
     """The base class of system call."""

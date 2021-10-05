@@ -1,2 +1,2 @@
 # pyos
-A toy OS implementation in a python process.
+A toy OS implementation using coroutine in Python.

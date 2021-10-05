@@ -63,3 +63,27 @@ class WaitTask(SystemCall):
         # return immediately without waiting
         if not result:
             self.sched.schedule(self.task)
+
+
+class ReadWait(SystemCall):
+    """Wait for reading."""
+
+    def __init__(self, f):
+        super().__init__()
+        self.f = f
+    
+    def handle(self):
+        fd = self.f.fileno()
+        self.sched.waitforread(self.task, fd)
+
+
+class WriteWait(SystemCall):
+    """Wait for writing."""
+
+    def __init__(self, f):
+        super().__init__()
+        self.f = f
+
+    def handle(self):
+        fd = self.f.fileno()
+        self.sched.waitforwrite(self.task, fd)

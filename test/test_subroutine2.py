@@ -17,16 +17,16 @@ def Send(sock,buffer):
 
 def Recv(sock,maxbytes):
     yield ReadWait(sock)
-    yield sock.recv(maxbytes)
+    return sock.recv(maxbytes)
 
 
 def handle_client(client,addr):
     print("Connection from", addr)
     while True:
-        data = yield Recv(client,65536)
+        data = yield from Recv(client,65536)
         if not data:
             break
-        yield Send(client,data)
+        yield from Send(client,data)
     print("Client closed")
     client.close()
 
